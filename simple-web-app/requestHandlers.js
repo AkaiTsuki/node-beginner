@@ -1,6 +1,7 @@
 var jade = require('jade');
+var querystring = require('querystring');
 
-function start(request, response){
+function start(response, postData){
 	console.log("Request Handler: start");
 
 	var html = jade.renderFile("./start.jade");
@@ -10,10 +11,12 @@ function start(request, response){
 	response.end();
 }
 
-function upload(request, response){
+function upload(response, postData){
 	console.log("Request Handler: upload");
 	response.writeHeader(200, {'Content-Type':'text-plain'});
-	response.write("Upload called");
+	var data = querystring.parse(postData);
+	response.write(data.text);
+	response.write(data.firstname);
 	response.end();
 }
 

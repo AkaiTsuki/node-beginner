@@ -20,10 +20,19 @@ function startServer(route, handler){
 	function onRequest(request, response){
 		var pathname = url.parse(request.url).pathname;
 
-		if(pathname != '/favicon.ico'){
-			console.log(constructInfo(pathname));
-			route(handler, pathname, request, response);
-		}
+		if(pathname == '/favicon.ico') return;
+		var postData = "";
+
+		request.setEncoding("utf8");
+
+		request.addListener("data", function(chunk){
+			postData += chunk;
+		});
+
+		request.addListener("end", function(){
+			route(handler, pathname, response, postData);
+		});
+		
 	}
 	http.createServer(onRequest).listen(3000);
 	console.log("Server Started!".info);

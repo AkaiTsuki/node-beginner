@@ -1,8 +1,8 @@
 var colors = require('colors');
 
-function route(handler, pathname, request, response){
+function route(handler, pathname, response, postData){
 	if(typeof handler[pathname] === 'function'){
-		return handler[pathname](request, response);
+		return handler[pathname](response, postData);
 	}else if(pathname != '/favicon.ico'){
 		var error = "Could not find handler on "+ pathname;
 		console.log(error.red);
