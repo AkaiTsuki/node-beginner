@@ -8,6 +8,4 @@ handlers = {
 	'/upload' : requestHandlers.upload
 };
 
-
-
 server.start(router.route, handlers);
