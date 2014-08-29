@@ -4,11 +4,13 @@ html(lang="en")
 		title = Start Page
 	body
 		h1 Welcome to Start Page - Jade
-		form(method="post", action="/upload")
+		form(method="post", action="/upload", enctype="multipart/form-data")
 			p
 				label First Name
 				input(type="text", name="firstname")
 			p
 				textarea(name="text", rows="20" cols="60")
+			p
+				input(type="file", name="upload")
 			p
 				input(type="submit", value="Submit")

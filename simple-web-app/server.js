@@ -21,17 +21,7 @@ function startServer(route, handler){
 		var pathname = url.parse(request.url).pathname;
 
 		if(pathname == '/favicon.ico') return;
-		var postData = "";
-
-		request.setEncoding("utf8");
-
-		request.addListener("data", function(chunk){
-			postData += chunk;
-		});
-
-		request.addListener("end", function(){
-			route(handler, pathname, response, postData);
-		});
+		route(handler, pathname, response, request);
 		
 	}
 	http.createServer(onRequest).listen(3000);
