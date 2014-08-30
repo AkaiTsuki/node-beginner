@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+	head
+		title Node - ToDo
+	body
+		ul#itemList
+			h2 All Items:
+			- for item in items
+				li #{item.id} - #{item.text}
+					input(type="checkbox", name="selectedItems", value="#{item.id}")
+		form#itemForm(method="post", action="/")
+			p
+				label Add a new item: 
+			p
+				input(type="text" name="item")
+			p
+				button submit
