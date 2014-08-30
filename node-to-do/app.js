@@ -1,3 +1,7 @@
+/* app provides handy method to bind business logic to url based
+*  on request method.
+*/
+
 var handler = {
 	'get' : [],
 	'post' : [],
