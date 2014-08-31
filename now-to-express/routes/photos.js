@@ -7,7 +7,6 @@ var resolve = path.resolve;
 
 var router = express.Router();
 
-/* GET users listing. */
 router.get('/', function(req, res) {
 	Photo.find({},function(err, photos){
 		if(err) return next(err);
@@ -50,10 +49,5 @@ router.post('/upload', function(req, res, next){
 		});
 	});
 });
-
-function getPhotoAbsPath(){
-	var currentPath = __dirname;
-
-}
 
 module.exports = router;
