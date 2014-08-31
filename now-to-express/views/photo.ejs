@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/photo.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div>
+    	<% photos.forEach(function(photo){ %>
+			<div class="photo">
+	    		<h2><%= photo.name %></h2>
+	    		<img src="<%= photo.path %>" alt="Cannot find photo!!">
+	    	</div>
+    	<% }) %>
+    </div>
+    <div>
+      <p>
+        <a href="/photos/upload">Upload a photo</a>
+      </p>
+    </div>
+  </body>
+</html>
