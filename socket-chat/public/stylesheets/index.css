@@ -1,0 +1,22 @@
+.chatArea {
+	height: 500px;
+	width: 100%;
+	border: 1px solid #eee;
+	border-radius: 5px;
+  	box-shadow: 1px 1px 2px #ddd;
+  	margin-bottom: 5px;
+  	overflow: scroll;
+}
+
+.chatInput{
+	width: 100%;
+}
+
+.chatInput input{
+	width: 93%;
+}
+
+.chatInput button{
+	width: 6%;
+	float: right;
+}
