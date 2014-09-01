@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	h1= title
+	p Welcome to #{title}
+	form(action="/users/login" method="POST")
+		p
+			label Username:
+			input(type="text" name="username" placeholder="Username")
+		p
+			label Password:
+			input(type="password" name="password" placeholder="Password")
+		button login
+		a(href="/users/register") Register

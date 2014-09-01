@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1 Register
+	form(action="/users/register", method="POST")
+		p
+			label Username:
+			input(type="text" name="username" placeholder="Username")
+		p
+			label Password:
+			input(type="password" name="password" placeholder="Password")
+		p
+			label Confirm Password:
+			input(type="password" name="confirmPassword" placeholder="Confirm Password")
+		button Register
+		a(href="/") Back to Home
