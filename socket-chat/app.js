@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 var http = require('http').createServer(app);
-var io = require('socket.io').listen(http);
+var io = require('./lib/socket').socket(http);
 var debug = require('debug')('my-application');
 
 var routes = require('./routes/index');
@@ -43,6 +43,7 @@ io.on('connection',function(socket){
     });
 
     socket.on('chat message', function(msg){
+        console.log('%j', msg);
         io.emit('chat message', msg);
     });
 });
