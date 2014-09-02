@@ -1,8 +1,8 @@
 doctype html
-html
+html(ng-app="chatRoom")
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     block styles
-  body
+  body(ng-controller="chatController")
     block content

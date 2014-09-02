@@ -14,6 +14,7 @@ function setup(server){
 		});
 
 		socket.on('new message', function(msg){
+			console.log('%j', msg);
 			io.emit('new message', msg);
 		});
 

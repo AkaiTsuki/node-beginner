@@ -1,30 +1,32 @@
-extends layout
+html(ng-app="chatRoom")
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/index.css')
+	body(ng-controller="chatController")
+		h1= title
+		p Welcome to #{title}
+		div.main
+			p Please input a nickname:
+			div.nickname
+				input(type="text", id="nickname", name="nickname" ng-model="nickname")
+				button#nicknameSetBtn(ng-click="setNickName()") Use
+			
+			div.chat
+				ul.chatArea(ng-model="messages")
+					li(ng-repeat="msg in messages")
+						div {{msg.from}}  {{msg.sendTime}}
+						div {{msg.content}}
+				form.chatInput#chatForm(ng-submit="newMessage()")
+					input(type="text",id="chat",name="chatContent" ng-model="message")
+					button Send
+		div.side
+			h2 Online Users
+			p A list of online users
+			ul#userlist
+				li(ng-repeat="user in userlist") {{user.nickname}}
 
-block styles
-	link(rel='stylesheet', href='/stylesheets/index.css')
-
-block content
-	h1= title
-	p Welcome to #{title}
-	div.main
-		p Please input a nickname:
-		div.nickname
-			input(type="text", id="nickname", name="nickname")
-			button#nicknameSetBtn Use
-		
-		div.chat
-			ul.chatArea
-			form.chatInput#chatForm
-				input(type="text",id="chat",name="chatContent")
-				button Send
-	div.side
-		h2 Online Users
-		p A list of online users
-		ul#userlist
-			- for u in userlist
-				li #{u.nickname}
-
-
-	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", type="text/javascript")
-	script(src="/socket.io/socket.io.js", type="text/javascript")
-	script(src="/javascripts/index.js", type="text/javascript")
+		script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", type="text/javascript")
+		script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js", type="text/javascript")
+		script(src="/socket.io/socket.io.js", type="text/javascript")
+		script(src="/javascripts/index-angular.js", type="text/javascript")
