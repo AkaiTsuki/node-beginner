@@ -34,20 +34,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-// Socket IO
-io.on('connection',function(socket){
-    console.log('a user connected');
-
-    socket.on('disconnect', function(){
-        console.log('user disconnect');
-    });
-
-    socket.on('chat message', function(msg){
-        console.log('%j', msg);
-        io.emit('chat message', msg);
-    });
-});
-
 /// error handlers
 
 // development error handler

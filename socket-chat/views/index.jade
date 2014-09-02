@@ -6,12 +6,24 @@ block styles
 block content
 	h1= title
 	p Welcome to #{title}
-	
-	div.chat
-		ul.chatArea
-		form.chatInput#chatForm
-			input(type="text",id="chat",name="chatContent")
-			button Send
+	div.main
+		p Please input a nickname:
+		div.nickname
+			input(type="text", id="nickname", name="nickname")
+			button#nicknameSetBtn Use
+		
+		div.chat
+			ul.chatArea
+			form.chatInput#chatForm
+				input(type="text",id="chat",name="chatContent")
+				button Send
+	div.side
+		h2 Online Users
+		p A list of online users
+		ul#userlist
+			- for u in userlist
+				li #{u.nickname}
+
 
 	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js", type="text/javascript")
 	script(src="/socket.io/socket.io.js", type="text/javascript")

@@ -2,26 +2,42 @@ $(function(){
 	var socket = io();
 
 	$('#chat').focus();
+	$('.chat').hide();
+
+	$('#nicknameSetBtn').click(function(){
+		var nickname = $('#nickname').val();
+		if(nickname !== ''){
+			socket.emit('new user', nickname);
+		}
+		$(this).hide();
+		$("#nickname").prop('disabled', true);
+		$('.chat').show();
+	});
 
 	$('#chatForm').submit(function(){
 		var msg = {
 			'sendTime': parseDateTime(Date.now()),
-			'content': $('#chat').val()
+			'content': $('#chat').val(),
+			'from': $('#nickname').val()
 		};
 		console.log(msg);
-		socket.emit("chat message", msg);
+		socket.emit("new message", msg);
 		$('#chat').val('');
 		return false;
 	});
 
-	socket.on('chat message', function(msg){
+	socket.on('new message', function(msg){
 		$('.chatArea').append(createMsgBlock(msg));
 		$(".chatArea").scrollTop($(".chatArea")[0].scrollHeight);
-		$('li:even').css("background-color", "#eee");
+		$('.chatArea li:even').css("background-color", "#eee");
+	});
+
+	socket.on('new user', function(userlist){
+		refresh(userlist);
 	});
 
 	function createMsgBlock(msg){
-		var $datetime = $('<div>').text(msg.sendTime);
+		var $datetime = $('<div>').text(msg.from+"   "+msg.sendTime);
 		var $content = $('<div>').text(msg.content);
 		return $('<li>').append($datetime).append($content);
 	}
@@ -35,6 +51,13 @@ $(function(){
 		var min = datetime.getMinutes();
 		var sec = datetime.getSeconds();
 		return year+'-'+month+'-'+day+' '+hour+':'+min+':'+sec;
+	}
+
+	function refresh(userlist){
+		$('#userlist').html('');
+		userlist.forEach(function(u,index){
+			$('#userlist').append($('<li>').text(u.nickname));
+		});
 	}
 });
 

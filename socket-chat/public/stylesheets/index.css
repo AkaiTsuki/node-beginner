@@ -1,3 +1,18 @@
+.main, .side{
+	display: inline-block;
+	margin-right: 3%;
+	vertical-align: top;
+}
+
+.main{
+	width: 70%;
+}
+
+.side{
+	width: 15%;
+	padding: 1em;
+}
+
 .chatArea {
 	height: 500px;
 	width: 100%;
